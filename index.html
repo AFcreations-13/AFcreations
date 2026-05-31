@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AF Créations – Vidéaste de mariage</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F7F2EB; --warm: #EDE4D5; --sand: #D4C5A9;
+    --bark: #8B6E4E; --earth: #5C4033; --moss: #7A8C6E;
+    --sage: #A8B89A; --fog: #C9D0C3; --gold: #C49A5A;
+    --text: #3A2E24; --muted: #7A6B5A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; background: rgba(247,242,235,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--sand); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.12em; color: var(--earth); }
+  .nav-logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul li a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  nav ul li a:hover { color: var(--earth); }
+
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 10rem 3rem 5rem; position: relative; overflow: hidden; background: linear-gradient(160deg, var(--cream) 50%, var(--warm) 100%); }
+  .hero-bg-circle { position: absolute; right: -12rem; top: 50%; transform: translateY(-50%); width: 42rem; height: 42rem; border-radius: 50%; background: radial-gradient(circle, var(--fog) 0%, var(--warm) 55%, transparent 75%); opacity: 0.6; }
+  .hero-leaf { position: absolute; width: 18rem; height: 18rem; border-radius: 0 80% 0 80%; background: var(--moss); opacity: 0.08; right: 6rem; top: 4rem; transform: rotate(25deg); }
+  .hero-leaf2 { position: absolute; width: 10rem; height: 10rem; border-radius: 0 80% 0 80%; background: var(--sage); opacity: 0.12; right: 14rem; bottom: 6rem; transform: rotate(-15deg); }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.2s both; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.1; color: var(--earth); max-width: 700px; margin-bottom: 1.8rem; animation: fadeUp 0.8s 0.4s both; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero > p { font-size: 1rem; font-weight: 300; color: var(--muted); max-width: 460px; line-height: 1.8; margin-bottom: 2.8rem; animation: fadeUp 0.8s 0.6s both; }
+  .hero-btns { animation: fadeUp 0.8s 0.8s both; }
+  .btn-primary { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.4rem; background: var(--earth); color: var(--cream); border: none; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+  .btn-primary:hover { background: var(--bark); transform: translateY(-1px); }
+  .btn-outline { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.4rem; background: transparent; color: var(--earth); border: 1px solid var(--bark); cursor: pointer; transition: background 0.3s, color 0.3s; margin-left: 1rem; }
+  .btn-outline:hover { background: var(--earth); color: var(--cream); }
+  .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .hero-scroll span { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--bark), transparent); animation: scrollPulse 2s infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+  section { padding: 6rem 3rem; }
+  .section-label { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--earth); line-height: 1.15; margin-bottom: 1.5rem; }
+  .section-title em { font-style: italic; }
+  .section-sub { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 520px; }
+
+  /* ABOUT */
+  .about { background: var(--warm); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-visual { position: relative; height: 420px; }
+  .about-frame { position: absolute; width: 80%; height: 100%; background: var(--sand); border-radius: 200px 200px 0 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .about-photo { width: 100%; height: 100%; object-fit: cover; }
+  .about-frame-inner { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--cream); opacity: 0.4; font-style: italic; }
+  .about-accent { position: absolute; bottom: 1rem; right: 0; width: 45%; height: 55%; background: var(--moss); opacity: 0.25; border-radius: 120px 0 120px 0; }
+  .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--bark); line-height: 1.7; margin: 2rem 0; padding-left: 1.5rem; border-left: 2px solid var(--gold); }
+  .about-sig { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--muted); }
+
+  /* FILMS */
+  .films { background: var(--cream); }
+  .films-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+  .films-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .film-card { cursor: pointer; position: relative; overflow: hidden; border-radius: 4px; }
+  .film-card:first-child { grid-column: span 2; grid-row: span 2; }
+  .film-thumb { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .film-card:first-child .film-thumb { aspect-ratio: 16/9; height: 100%; }
+  .film-card:hover .film-thumb { transform: scale(1.04); }
+  .film-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .film-bg-1 { background: linear-gradient(135deg, #C4A882 0%, #8B6E4E 100%); }
+  .film-bg-2 { background: linear-gradient(135deg, #A8B89A 0%, #7A8C6E 100%); }
+  .film-bg-3 { background: linear-gradient(135deg, #D4C5A9 0%, #8B6E4E 100%); }
+  .film-bg-4 { background: linear-gradient(135deg, #C9D0C3 0%, #7A8C6E 100%); }
+  .film-overlay { position: absolute; inset: 0; background: rgba(58,46,36,0.25); z-index: 1; }
+  .film-icon { position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgba(247,242,235,0.2); border: 1.5px solid rgba(247,242,235,0.6); display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.3s; }
+  .film-card:hover .film-icon { background: rgba(247,242,235,0.35); transform: scale(1.1); }
+  .play-tri { width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 16px; border-color: transparent transparent transparent rgba(247,242,235,0.9); margin-left: 4px; }
+  .film-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(58,46,36,0.8) 0%, transparent 100%); z-index: 2; }
+  .film-couple { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: rgba(247,242,235,0.95); letter-spacing: 0.04em; }
+  .film-location { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,235,0.65); margin-top: 0.2rem; }
+
+  /* Modal vidéo */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(30,20,15,0.92); z-index: 999; align-items: center; justify-content: center; }
+  .modal-overlay.active { display: flex; }
+  .modal-inner { position: relative; width: 90%; max-width: 900px; }
+  .modal-close { position: absolute; top: -2.5rem; right: 0; background: none; border: none; color: var(--cream); font-size: 1.5rem; cursor: pointer; letter-spacing: 0.1em; font-family: 'Jost', sans-serif; opacity: 0.7; transition: opacity 0.2s; }
+  .modal-close:hover { opacity: 1; }
+  .modal-video { width: 100%; aspect-ratio: 16/9; background: #000; }
+  .modal-video iframe { width: 100%; height: 100%; border: none; }
+
+  /* FORMULES */
+  .formules { background: var(--earth); }
+  .formules .section-label { color: var(--sage); }
+  .formules .section-title { color: var(--cream); }
+  .formules .section-sub { color: rgba(247,242,235,0.6); }
+  .formules-inclus { margin-top: 3rem; background: rgba(247,242,235,0.05); border: 1px solid rgba(247,242,235,0.1); padding: 1.6rem 2rem; margin-bottom: 0.5rem; }
+  .inclus-title { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); margin-bottom: 1.2rem; }
+  .inclus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem 2rem; }
+  .inclus-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.85rem; font-weight: 300; color: rgba(247,242,235,0.7); }
+  .inclus-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .formules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+  .formule-card { background: rgba(247,242,235,0.05); border: 1px solid rgba(247,242,235,0.12); padding: 2.5rem; position: relative; transition: background 0.3s, border-color 0.3s; }
+  .formule-card:hover { background: rgba(247,242,235,0.09); border-color: rgba(196,154,90,0.5); }
+  .formule-card.featured { background: rgba(196,154,90,0.1); border-color: rgba(196,154,90,0.45); }
+  .formule-badge { position: absolute; top: -1px; right: 2rem; background: var(--gold); color: var(--earth); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.35rem 1rem; }
+  .formule-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--cream); margin-bottom: 0.4rem; }
+  .formule-tagline { font-size: 0.82rem; color: var(--sage); font-style: italic; margin-bottom: 2rem; line-height: 1.5; }
+  .formule-price { display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 2rem; }
+  .formule-price-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold); }
+  .formule-price-unit { font-size: 0.8rem; color: rgba(247,242,235,0.4); letter-spacing: 0.1em; }
+  .formule-divider { height: 1px; background: rgba(247,242,235,0.1); margin-bottom: 2rem; }
+  .formule-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+  .formule-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.88rem; font-weight: 300; color: rgba(247,242,235,0.78); line-height: 1.4; }
+  .check-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
+  .formule-note { font-size: 0.78rem; color: rgba(247,242,235,0.4); font-style: italic; margin-top: 1.5rem; line-height: 1.5; }
+  .formule-cta { display: block; text-align: center; margin-top: 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 0.9rem 2rem; border: 1px solid rgba(247,242,235,0.3); color: var(--cream); transition: background 0.3s, border-color 0.3s; }
+  .formule-cta:hover { background: rgba(247,242,235,0.1); border-color: rgba(247,242,235,0.6); }
+  .formule-card.featured .formule-cta { background: var(--gold); border-color: var(--gold); color: var(--earth); }
+  .formule-card.featured .formule-cta:hover { background: var(--bark); border-color: var(--bark); color: var(--cream); }
+  .formules-custom { margin-top: 2rem; text-align: center; font-size: 0.88rem; color: rgba(247,242,235,0.5); font-style: italic; }
+  .formules-custom a { color: var(--gold); text-decoration: none; }
+  .formules-custom a:hover { text-decoration: underline; }
+
+  /* CONTACT */
+  .contact { background: var(--warm); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
+  .form-group label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group textarea, .form-group select { background: var(--cream); border: 1px solid var(--sand); padding: 0.9rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text); outline: none; transition: border-color 0.3s; width: 100%; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--bark); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group select { appearance: none; cursor: pointer; }
+  .contact-details { display: flex; flex-direction: column; gap: 2rem; }
+  .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .contact-icon { width: 40px; height: 40px; border: 1px solid var(--sand); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--bark); font-size: 1rem; }
+  .contact-item-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+  .contact-item-val { font-size: 0.95rem; color: var(--earth); }
+  .contact-promise { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--bark); line-height: 1.5; margin-top: 1rem; }
+
+  /* FOOTER */
+  footer { background: var(--earth); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.1em; color: var(--cream); }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 0.75rem; color: rgba(247,242,235,0.4); letter-spacing: 0.05em; }
+  footer nav ul { display: flex; gap: 2rem; list-style: none; }
+  footer nav ul li a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,235,0.5); text-decoration: none; transition: color 0.3s; }
+  footer nav ul li a:hover { color: var(--cream); }
+
+  /* FORM SUCCESS */
+  .form-success { display: none; text-align: center; padding: 3rem; background: rgba(122,140,110,0.1); border: 1px solid var(--sage); }
+  .form-success p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--earth); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>AF</span> Créations</div>
+  <ul>
+    <li><a href="#films">Films</a></li>
+    <li><a href="#formules">Formules</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-leaf"></div>
+  <div class="hero-leaf2"></div>
+  <p class="hero-eyebrow">Vidéaste de mariage · Saint-Maximin-la-Sainte-Baume · Var</p>
+  <h1>Votre histoire,<br><em>éternellement</em> vivante</h1>
+  <p>Je capture l'émotion brute de votre plus beau jour — regards, larmes, rires — dans un film artisanal que vous pourrez revivre toute votre vie.</p>
+  <div class="hero-btns">
+    <a href="#films" class="btn-primary">Voir mes films</a>
+    <a href="#formules" class="btn-outline">Nos formules</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Découvrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- FILMS -->
+<section class="films" id="films">
+  <div class="films-header">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Moments <em>filmés</em></h2>
+    </div>
+    <p class="section-sub" style="max-width:300px; text-align:right;">Chaque mariage est unique. Voici quelques-uns des couples que j'ai eu l'honneur d'accompagner.</p>
+  </div>
+  <div class="films-grid">
+    <!--
+      POUR AJOUTER VOS VIDÉOS :
+      1. Uploadez sur YouTube (non répertorié si vous voulez)
+      2. Récupérez l'ID de la vidéo (ex: youtube.com/watch?v=XXXXXXXXXXX → ID = XXXXXXXXXXX)
+      3. Remplacez data-video-id="XXXXXXXXXXX" par votre vrai ID
+      4. Remplacez le style background de .film-bg par une vraie photo :
+         style="background-image: url('votre-photo.jpg')"
+    -->
+    <div class="film-card" data-video-id="XXXXXXXXXXX">
+      <div class="film-thumb">
+        <div class="film-bg film-bg-1"></div>
+        <div class="film-overlay"></div>
+        <div class="film-icon"><div class="play-tri"></div></div>
+        <div class="film-info">
+          <p class="film-couple">Prénom & Prénom</p>
+          <p class="film-location">Lieu · Var</p>
+        </div>
+      </div>
+    </div>
+    <div class="film-card" data-video-id="XXXXXXXXXXX">
+      <div class="film-thumb">
+        <div class="film-bg film-bg-2"></div>
+        <div class="film-overlay"></div>
+        <div class="film-icon"><div class="play-tri"></div></div>
+        <div class="film-info">
+          <p class="film-couple">Prénom & Prénom</p>
+          <p class="film-location">Lieu · Provence</p>
+        </div>
+      </div>
+    </div>
+    <div class="film-card" data-video-id="XXXXXXXXXXX">
+      <div class="film-thumb">
+        <div class="film-bg film-bg-3"></div>
+        <div class="film-overlay"></div>
+        <div class="film-icon"><div class="play-tri"></div></div>
+        <div class="film-info">
+          <p class="film-couple">Prénom & Prénom</p>
+          <p class="film-location">Lieu · Provence</p>
+        </div>
+      </div>
+    </div>
+    <div class="film-card" data-video-id="XXXXXXXXXXX">
+      <div class="film-thumb">
+        <div class="film-bg film-bg-4"></div>
+        <div class="film-overlay"></div>
+        <div class="film-icon"><div class="play-tri"></div></div>
+        <div class="film-info">
+          <p class="film-couple">Prénom & Prénom</p>
+          <p class="film-location">Lieu · Côte d'Azur</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal vidéo -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-inner">
+    <button class="modal-close" id="modalClose">✕ Fermer</button>
+    <div class="modal-video">
+      <iframe id="modalIframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-frame">
+      <!--
+        POUR AJOUTER VOTRE PHOTO :
+        Décommentez la ligne ci-dessous et remplacez "votre-photo.jpg" par le nom de votre fichier
+        <img src="votre-photo.jpg" alt="Alexis Fernandez" class="about-photo">
+      -->
+      <div class="about-frame-inner">AF</div>
+    </div>
+    <div class="about-accent"></div>
+  </div>
+  <div>
+    <p class="section-label">Qui suis-je ?</p>
+    <h2 class="section-title">Alexis Fernandez,<br><em>vidéaste passionné</em></h2>
+    <blockquote class="about-quote">"Je ne filme pas un mariage, je préserve les émotions qui le rendent inoubliable."</blockquote>
+    <p class="section-sub">Basé à Saint-Maximin-la-Sainte-Baume dans le Var, je me déplace dans toute la région PACA pour immortaliser votre journée. Mon approche est discrète et intuitive — je me fonds dans votre fête pour capter les instants authentiques, ceux qui font toute la beauté d'un mariage.</p>
+    <p class="about-sig" style="margin-top:1.5rem;">— Alexis Fernandez</p>
+  </div>
+</section>
+
+<!-- FORMULES -->
+<section class="formules" id="formules">
+  <p class="section-label">Tarifs & Prestations</p>
+  <h2 class="section-title">Choisissez <em>votre formule</em></h2>
+  <p class="section-sub">Deux formules pensées pour immortaliser intégralement votre journée, avec la même exigence artistique.</p>
+
+  <div class="formules-inclus">
+    <p class="inclus-title">Inclus dans les deux formules</p>
+    <div class="inclus-grid">
+      <div class="inclus-item"><span class="inclus-dot"></span>Captation vidéo professionnelle</div>
+      <div class="inclus-item"><span class="inclus-dot"></span>Teaser d'environ 5 min</div>
+      <div class="inclus-item"><span class="inclus-dot"></span>Version longue 20–30 min</div>
+      <div class="inclus-item"><span class="inclus-dot"></span>Toutes les vidéos soirée & cérémonie</div>
+      <div class="inclus-item"><span class="inclus-dot"></span>Prises de vue drone</div>
+      <div class="inclus-item"><span class="inclus-dot"></span>Livraison sur clé USB</div>
+    </div>
+  </div>
+
+  <div class="formules-grid">
+    <div class="formule-card">
+      <p class="formule-name">L'Essentiel</p>
+      <p class="formule-tagline">De la mairie jusqu'à la pièce montée.<br>Capturez les moments clés de cette journée magique.</p>
+      <div class="formule-price">
+        <span class="formule-price-num">990 €</span>
+        <span class="formule-price-unit">tout inclus</span>
+      </div>
+      <div class="formule-divider"></div>
+      <ul class="formule-list">
+        <li><span class="check-dot"></span>Présence de la mairie à la pièce montée</li>
+        <li><span class="check-dot"></span>Teaser d'environ 5 min</li>
+        <li><span class="check-dot"></span>Version longue 20–30 min</li>
+        <li><span class="check-dot"></span>Vidéos de la soirée & cérémonie</li>
+        <li><span class="check-dot"></span>Prises de vue drone (si autorisé)</li>
+        <li><span class="check-dot"></span>Livraison sur clé USB</li>
+      </ul>
+      <p class="formule-note">* Frais de déplacement en sus si le lieu dépasse 50 km autour de Saint-Maximin-la-Sainte-Baume.</p>
+      <a href="#contact" class="formule-cta">Demander un devis</a>
+    </div>
+
+    <div class="formule-card featured">
+      <div class="formule-badge">La plus complète</div>
+      <p class="formule-name">Journée Éternelle</p>
+      <p class="formule-tagline">Des préparatifs jusqu'à la pièce montée.<br>Immortalisez l'intégralité de cette journée unique.</p>
+      <div class="formule-price">
+        <span class="formule-price-num">1 190 €</span>
+        <span class="formule-price-unit">tout inclus</span>
+      </div>
+      <div class="formule-divider"></div>
+      <ul class="formule-list">
+        <li><span class="check-dot"></span>Présence dès les préparatifs du matin</li>
+        <li><span class="check-dot"></span>Teaser d'environ 5 min</li>
+        <li><span class="check-dot"></span>Version longue 20–30 min</li>
+        <li><span class="check-dot"></span>Vidéos de la soirée & cérémonie</li>
+        <li><span class="check-dot"></span>Prises de vue drone (si autorisé)</li>
+        <li><span class="check-dot"></span>Livraison sur clé USB</li>
+      </ul>
+      <p class="formule-note">* Frais de déplacement en sus si le lieu dépasse 50 km autour de Saint-Maximin-la-Sainte-Baume.</p>
+      <a href="#contact" class="formule-cta">Réserver cette formule</a>
+    </div>
+  </div>
+
+  <p class="formules-custom">Un projet particulier ? <a href="#contact">N'hésitez pas à m'en parler !</a></p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <p class="section-label">Parlons de votre mariage</p>
+    <h2 class="section-title">Écrivez-moi,<br><em>je vous réponds</em><br>sous 48h</h2>
+    <p class="contact-promise">"Chaque histoire mérite d'être racontée avec soin."</p>
+    <div class="contact-details" style="margin-top:2.5rem;">
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>
+          <p class="contact-item-label">Email</p>
+          <p class="contact-item-val">AFcreation.contact@gmail.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">◎</div>
+        <div>
+          <p class="contact-item-label">Zone d'intervention</p>
+          <p class="contact-item-val">PACA & alentours · Déplacement possible partout en France</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⊙</div>
+        <div>
+          <p class="contact-item-label">Siret</p>
+          <p class="contact-item-val">88797786600029</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <!--
+      POUR ACTIVER L'ENVOI DU FORMULAIRE :
+      1. Créez un compte gratuit sur formspree.io
+      2. Créez un nouveau formulaire et copiez votre ID (ex: xyzabcde)
+      3. Remplacez action="https://formspree.io/f/VOTRE_ID" dans la balise form ci-dessous
+    -->
+    <form id="contactForm" action="https://formspree.io/f/VOTRE_ID" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Votre prénom</label>
+          <input type="text" name="prenom" placeholder="Marie" required>
+        </div>
+        <div class="form-group">
+          <label>Prénom du / de la partenaire</label>
+          <input type="text" name="prenom_partenaire" placeholder="Julien">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="marie@exemple.fr" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date du mariage</label>
+          <input type="date" name="date_mariage">
+        </div>
+        <div class="form-group">
+          <label>Formule souhaitée</label>
+          <select name="formule">
+            <option value="">Choisir…</option>
+            <option>L'Essentiel – 990 €</option>
+            <option>Journée Éternelle – 1 190 €</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Votre message</label>
+        <textarea name="message" placeholder="Parlez-moi de votre mariage, du lieu, de l'ambiance que vous imaginez…"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Envoyer le message</button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <p>Merci ! Je vous réponds dans les 48h. ✦</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>AF</span> Créations</div>
+  <p>© 2025 AF Créations · Alexis Fernandez · Siret 88797786600029</p>
+  <nav>
+    <ul>
+      <li><a href="#films">Films</a></li>
+      <li><a href="#formules">Formules</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<script>
+  // Ouverture modal vidéo
+  document.querySelectorAll('.film-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const videoId = card.dataset.videoId;
+      if (!videoId || videoId === 'XXXXXXXXXXX') return;
+      const iframe = document.getElementById('modalIframe');
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+      document.getElementById('videoModal').classList.add('active');
+    });
+  });
+
+  // Fermeture modal
+  document.getElementById('modalClose').addEventListener('click', () => {
+    document.getElementById('videoModal').classList.remove('active');
+    document.getElementById('modalIframe').src = '';
+  });
+  document.getElementById('videoModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+      e.currentTarget.classList.remove('active');
+      document.getElementById('modalIframe').src = '';
+    }
+  });
+
+  // Formulaire Formspree
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+  });
+</script>
+
+</body>
+</html>
