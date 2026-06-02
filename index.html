@@ -63,24 +63,38 @@
   .films-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .film-card { cursor: pointer; position: relative; overflow: hidden; border-radius: 4px; }
   .film-card:first-child { grid-column: span 2; grid-row: span 2; }
-  .film-thumb { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .film-thumb { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
   .film-card:first-child .film-thumb { aspect-ratio: 16/9; height: 100%; }
   .film-card:hover .film-thumb { transform: scale(1.04); }
-  .film-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
-  .film-card:hover .film-bg { transform: scale(1.06); }
-  /* Photos de mariage Unsplash — libres de droits */
-  .film-bg-1 { background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80'); }
-  .film-bg-2 { background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80'); }
-  .film-bg-3 { background-image: url('https://images.unsplash.com/photo-1606216794079-73e3b5e2dd59?w=800&q=80'); }
-  .film-bg-4 { background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80'); }
-  .film-overlay { position: absolute; inset: 0; background: rgba(58,46,36,0.3); z-index: 1; transition: background 0.3s; }
-  .film-card:hover .film-overlay { background: rgba(58,46,36,0.18); }
-  .film-icon { position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgba(247,242,235,0.2); border: 1.5px solid rgba(247,242,235,0.6); display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.3s; }
-  .film-card:hover .film-icon { background: rgba(247,242,235,0.35); transform: scale(1.1); }
+
+  /* Vignettes neutres — à remplacer par vos vraies photos via style="background-image:url(...)" */
+  .film-bg {
+    position: absolute; inset: 0;
+    background: var(--earth);
+    background-size: cover; background-position: center;
+  }
+  /* Légère variation de teinte pour distinguer les cartes sans couleur */
+  .film-bg-1 { background-color: #3A2E24; }
+  .film-bg-2 { background-color: #4A3828; }
+  .film-bg-3 { background-color: #4A3828; }
+  .film-bg-4 { background-color: #3A2E24; }
+
+  .film-overlay { position: absolute; inset: 0; background: rgba(30,20,12,0.35); z-index: 1; }
+  .film-icon { position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgba(247,242,235,0.15); border: 1.5px solid rgba(247,242,235,0.5); display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.3s; }
+  .film-card:hover .film-icon { background: rgba(247,242,235,0.28); transform: scale(1.1); }
   .play-tri { width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 16px; border-color: transparent transparent transparent rgba(247,242,235,0.9); margin-left: 4px; }
-  .film-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(58,46,36,0.8) 0%, transparent 100%); z-index: 2; }
+  .film-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(30,18,10,0.85) 0%, transparent 100%); z-index: 2; }
   .film-couple { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: rgba(247,242,235,0.95); letter-spacing: 0.04em; }
-  .film-location { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,235,0.65); margin-top: 0.2rem; }
+  .film-location { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,235,0.55); margin-top: 0.2rem; }
+
+  /* Placeholder texte quand pas encore de photo */
+  .film-placeholder-label {
+    position: relative; z-index: 2;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(247,242,235,0.2);
+    font-family: 'Jost', sans-serif;
+    pointer-events: none;
+  }
 
   /* Modal vidéo */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(30,20,15,0.92); z-index: 999; align-items: center; justify-content: center; }
@@ -154,6 +168,34 @@
   .form-success p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--earth); }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* COULISSES */
+  .coulisses { background: var(--cream); padding: 6rem 3rem; }
+  .coulisses-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .coulisses-text { position: sticky; top: 8rem; }
+  .coulisses-text .section-sub { margin-bottom: 2rem; }
+  .coulisses-signature { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--gold); margin-top: 1.5rem; }
+  .coulisses-tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--sand); padding: 0.35rem 0.9rem; margin-right: 0.5rem; margin-top: 0.5rem; }
+
+  .coulisses-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .cg-img { overflow: hidden; position: relative; }
+  .cg-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .cg-img:hover img { transform: scale(1.05); }
+  .cg-tall { grid-row: span 2; }
+  .cg-wide { grid-column: span 2; }
+  .cg-img-1 { aspect-ratio: 3/4; }
+  .cg-img-2 { aspect-ratio: 1/1; }
+  .cg-img-3 { aspect-ratio: 1/1; }
+  .cg-img-4 { aspect-ratio: 16/7; }
+  .cg-img-5 { aspect-ratio: 1/1; }
+  .cg-img-6 { aspect-ratio: 1/1; }
+  .cg-img-7 { aspect-ratio: 16/7; }
+
+  .coulisses-feature { margin-top: 3rem; position: relative; overflow: hidden; }
+  .coulisses-feature img { width: 100%; aspect-ratio: 16/7; object-fit: cover; object-position: center 30%; display: block; transition: transform 0.6s ease; }
+  .coulisses-feature:hover img { transform: scale(1.03); }
+  .coulisses-feature-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 2rem; background: linear-gradient(to top, rgba(58,46,36,0.75) 0%, transparent 100%); }
+  .coulisses-feature-caption p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(247,242,235,0.9); }
 </style>
 </head>
 <body>
@@ -202,14 +244,14 @@
       1. Uploadez sur YouTube (non répertorié si vous voulez)
       2. Récupérez l'ID de la vidéo (ex: youtube.com/watch?v=XXXXXXXXXXX → ID = XXXXXXXXXXX)
       3. Remplacez data-video-id="XXXXXXXXXXX" par votre vrai ID
-      4. Pour remplacer les photos Unsplash par vos propres photos :
-         Dans le CSS, remplacez l'URL dans .film-bg-1, .film-bg-2, etc.
-         ex: .film-bg-1 { background-image: url('votre-photo.jpg'); }
+      4. Ajoutez votre photo de couverture :
+         style="background-image: url('votre-miniature.jpg')"  sur la div .film-bg
     -->
     <div class="film-card" data-video-id="XXXXXXXXXXX">
       <div class="film-thumb">
         <div class="film-bg film-bg-1"></div>
         <div class="film-overlay"></div>
+        <span class="film-placeholder-label">Ajouter une miniature</span>
         <div class="film-icon"><div class="play-tri"></div></div>
         <div class="film-info">
           <p class="film-couple">Prénom & Prénom</p>
@@ -221,6 +263,7 @@
       <div class="film-thumb">
         <div class="film-bg film-bg-2"></div>
         <div class="film-overlay"></div>
+        <span class="film-placeholder-label">Ajouter une miniature</span>
         <div class="film-icon"><div class="play-tri"></div></div>
         <div class="film-info">
           <p class="film-couple">Prénom & Prénom</p>
@@ -232,6 +275,7 @@
       <div class="film-thumb">
         <div class="film-bg film-bg-3"></div>
         <div class="film-overlay"></div>
+        <span class="film-placeholder-label">Ajouter une miniature</span>
         <div class="film-icon"><div class="play-tri"></div></div>
         <div class="film-info">
           <p class="film-couple">Prénom & Prénom</p>
@@ -243,6 +287,7 @@
       <div class="film-thumb">
         <div class="film-bg film-bg-4"></div>
         <div class="film-overlay"></div>
+        <span class="film-placeholder-label">Ajouter une miniature</span>
         <div class="film-icon"><div class="play-tri"></div></div>
         <div class="film-info">
           <p class="film-couple">Prénom & Prénom</p>
@@ -262,6 +307,58 @@
     </div>
   </div>
 </div>
+
+<!-- COULISSES -->
+<section class="coulisses" id="coulisses">
+  <div class="coulisses-inner">
+    <div class="coulisses-text">
+      <p class="section-label">Dans les coulisses</p>
+      <h2 class="section-title">L'œil derrière<br><em>la caméra</em></h2>
+      <p class="section-sub">Chaque plan est le fruit d'une attention constante — anticipation, discrétion, réactivité. Du drone qui survole vos paysages provençaux à la caméra stabilisée au cœur de votre danse, je mets tout en œuvre pour que rien ne vous échappe.</p>
+      <p class="section-sub" style="margin-top:1rem;">Je travaille avec une Sony α7 III, un gimbal DJI et un drone Mavic pour offrir des images cinématographiques, quelle que soit la lumière — en plein soleil méditerranéen, sous les voûtes d'une cathédrale ou dans l'ambiance d'une soirée.</p>
+      <div style="margin-top:1.8rem;">
+        <span class="coulisses-tag">Sony α7 III</span>
+        <span class="coulisses-tag">DJI Gimbal</span>
+        <span class="coulisses-tag">Drone Mavic</span>
+        <span class="coulisses-tag">Son directif</span>
+      </div>
+      <p class="coulisses-signature">— Présent du matin au dernier slow</p>
+    </div>
+
+    <div>
+      <div class="coulisses-gallery">
+        <div class="cg-img cg-tall cg-img-1">
+          <img src="IMG_9217.JPG" alt="Filmage en forêt">
+        </div>
+        <div class="cg-img cg-img-2">
+          <img src="IMG_9220.JPG" alt="Caméra sur gimbal cérémonie">
+        </div>
+        <div class="cg-img cg-img-3">
+          <img src="IMG_9221.JPG" alt="Drone DJI">
+        </div>
+        <div class="cg-img cg-wide cg-img-4">
+          <img src="IMG_9222.JPG" alt="Filmage dans une cathédrale">
+        </div>
+        <div class="cg-img cg-img-5">
+          <img src="IMG_9223.JPG" alt="Village provençal">
+        </div>
+        <div class="cg-img cg-img-6">
+          <img src="IMG_9225.JPG" alt="Tournage bord de mer">
+        </div>
+        <div class="cg-img cg-wide cg-img-7">
+          <img src="IMG_9218.JPG" alt="Soirée dansante">
+        </div>
+      </div>
+
+      <div class="coulisses-feature" style="margin-top:0.8rem;">
+        <img src="Élise_et_Xavier_160722-044.jpg" alt="Élise et Xavier">
+        <div class="coulisses-feature-caption">
+          <p>Élise & Xavier — Château en Provence</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section class="about" id="about">
