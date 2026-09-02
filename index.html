@@ -8,174 +8,163 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --cream: #F7F2EB; --warm: #EDE4D5; --sand: #D4C5A9;
-    --bark: #8B6E4E; --earth: #5C4033; --moss: #7A8C6E;
-    --sage: #A8B89A; --fog: #C9D0C3; --gold: #C49A5A;
-    --text: #3A2E24; --muted: #7A6B5A;
+    --black:  #0A0A0A; --dark:   #111111; --dark2:  #181818;
+    --dark3:  #202020; --border: #2A2A2A;
+    --gold:   #C9A84C; --gold2:  #E2C06A; --gold3:  #F0D98A;
+    --cream:  #F0E8D5; --muted:  #888070; --text:   #E8DEC8;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+  body { font-family: 'Jost', sans-serif; background: var(--black); color: var(--text); overflow-x: hidden; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; background: rgba(247,242,235,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--sand); }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.12em; color: var(--earth); }
-  .nav-logo span { color: var(--gold); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .nav-logo { display: flex; align-items: center; gap: 1rem; }
+  .nav-logo img { height: 48px; width: auto; }
   nav ul { list-style: none; display: flex; gap: 2.5rem; }
   nav ul li a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
-  nav ul li a:hover { color: var(--earth); }
+  nav ul li a:hover { color: var(--gold); }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 10rem 3rem 5rem; position: relative; overflow: hidden; background: linear-gradient(160deg, var(--cream) 50%, var(--warm) 100%); }
-  .hero-bg-circle { position: absolute; right: -12rem; top: 50%; transform: translateY(-50%); width: 42rem; height: 42rem; border-radius: 50%; background: radial-gradient(circle, var(--fog) 0%, var(--warm) 55%, transparent 75%); opacity: 0.6; }
-  .hero-leaf { position: absolute; width: 18rem; height: 18rem; border-radius: 0 80% 0 80%; background: var(--moss); opacity: 0.08; right: 6rem; top: 4rem; transform: rotate(25deg); }
-  .hero-leaf2 { position: absolute; width: 10rem; height: 10rem; border-radius: 0 80% 0 80%; background: var(--sage); opacity: 0.12; right: 14rem; bottom: 6rem; transform: rotate(-15deg); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 10rem 3rem 5rem; position: relative; overflow: hidden; background: var(--black); }
+  .hero-bg-circle { position: absolute; right: -10rem; top: 50%; transform: translateY(-50%); width: 50rem; height: 50rem; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, rgba(201,168,76,0.03) 40%, transparent 70%); }
+  .hero-line-deco { position: absolute; right: 8rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 0; opacity: 0.15; }
+  .hero-line-deco::before, .hero-line-deco::after { content: ''; display: block; width: 1px; height: 180px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); }
+  .hero-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); margin: 0.6rem 0; }
   .hero-eyebrow { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.2s both; }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.1; color: var(--earth); max-width: 700px; margin-bottom: 1.8rem; animation: fadeUp 0.8s 0.4s both; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.1; color: var(--cream); max-width: 700px; margin-bottom: 1.8rem; animation: fadeUp 0.8s 0.4s both; }
   .hero h1 em { font-style: italic; color: var(--gold); }
   .hero > p { font-size: 1rem; font-weight: 300; color: var(--muted); max-width: 460px; line-height: 1.8; margin-bottom: 2.8rem; animation: fadeUp 0.8s 0.6s both; }
   .hero-btns { animation: fadeUp 0.8s 0.8s both; }
-  .btn-primary { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.4rem; background: var(--earth); color: var(--cream); border: none; cursor: pointer; transition: background 0.3s, transform 0.2s; }
-  .btn-primary:hover { background: var(--bark); transform: translateY(-1px); }
-  .btn-outline { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.4rem; background: transparent; color: var(--earth); border: 1px solid var(--bark); cursor: pointer; transition: background 0.3s, color 0.3s; margin-left: 1rem; }
-  .btn-outline:hover { background: var(--earth); color: var(--cream); }
+  .btn-primary { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.4rem; background: var(--gold); color: var(--black); border: none; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+  .btn-outline { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.4rem; background: transparent; color: var(--gold); border: 1px solid var(--gold); cursor: pointer; transition: background 0.3s, color 0.3s; margin-left: 1rem; }
+  .btn-outline:hover { background: var(--gold); color: var(--black); }
   .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
   .hero-scroll span { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
-  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--bark), transparent); animation: scrollPulse 2s infinite; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s infinite; }
   @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
   section { padding: 6rem 3rem; }
   .section-label { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--earth); line-height: 1.15; margin-bottom: 1.5rem; }
-  .section-title em { font-style: italic; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 1.5rem; }
+  .section-title em { font-style: italic; color: var(--gold); }
   .section-sub { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 520px; }
 
+  /* Séparateur doré décoratif */
+  .gold-divider { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
+  .gold-divider::before, .gold-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.3; }
+  .gold-divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
   /* ABOUT */
-  .about { background: var(--warm); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about { background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
   .about-visual { position: relative; height: 420px; }
-  .about-frame { position: absolute; width: 80%; height: 100%; background: var(--sand); border-radius: 200px 200px 0 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .about-frame { position: absolute; width: 80%; height: 100%; background: var(--dark3); border: 1px solid var(--border); border-radius: 200px 200px 0 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .about-photo { width: 100%; height: 100%; object-fit: cover; }
-  .about-frame-inner { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--cream); opacity: 0.4; font-style: italic; }
-  .about-accent { position: absolute; bottom: 1rem; right: 0; width: 45%; height: 55%; background: var(--moss); opacity: 0.25; border-radius: 120px 0 120px 0; }
-  .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--bark); line-height: 1.7; margin: 2rem 0; padding-left: 1.5rem; border-left: 2px solid var(--gold); }
+  .about-frame-inner { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--gold); opacity: 0.15; font-style: italic; }
+  .about-accent { position: absolute; bottom: 1rem; right: 0; width: 45%; height: 55%; background: var(--gold); opacity: 0.04; border-radius: 120px 0 120px 0; }
+  .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--gold2); line-height: 1.7; margin: 2rem 0; padding-left: 1.5rem; border-left: 2px solid var(--gold); }
   .about-sig { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--muted); }
 
   /* FILMS */
-  .films { background: var(--cream); }
+  .films { background: var(--black); }
   .films-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
   .films-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .film-card { cursor: pointer; position: relative; overflow: hidden; border-radius: 4px; }
+  .film-card { cursor: pointer; position: relative; overflow: hidden; border-radius: 2px; border: 1px solid var(--border); }
   .film-card:first-child { grid-column: span 2; grid-row: span 2; }
   .film-thumb { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
   .film-card:first-child .film-thumb { aspect-ratio: 16/9; height: 100%; }
   .film-card:hover .film-thumb { transform: scale(1.04); }
-
-  /* Vignettes neutres — à remplacer par vos vraies photos via style="background-image:url(...)" */
-  .film-bg {
-    position: absolute; inset: 0;
-    background: var(--earth);
-    background-size: cover; background-position: center;
-  }
-  /* Légère variation de teinte pour distinguer les cartes sans couleur */
-  .film-bg-1 { background-color: #3A2E24; }
-  .film-bg-2 { background-color: #4A3828; }
-  .film-bg-3 { background-color: #4A3828; }
-  .film-bg-4 { background-color: #3A2E24; }
-
-  .film-overlay { position: absolute; inset: 0; background: rgba(30,20,12,0.35); z-index: 1; }
-  .film-icon { position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgba(247,242,235,0.15); border: 1.5px solid rgba(247,242,235,0.5); display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.3s; }
-  .film-card:hover .film-icon { background: rgba(247,242,235,0.28); transform: scale(1.1); }
-  .play-tri { width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 16px; border-color: transparent transparent transparent rgba(247,242,235,0.9); margin-left: 4px; }
-  .film-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(30,18,10,0.85) 0%, transparent 100%); z-index: 2; }
-  .film-couple { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: rgba(247,242,235,0.95); letter-spacing: 0.04em; }
-  .film-location { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,235,0.55); margin-top: 0.2rem; }
-
-  /* Placeholder texte quand pas encore de photo */
-  .film-placeholder-label {
-    position: relative; z-index: 2;
-    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(247,242,235,0.2);
-    font-family: 'Jost', sans-serif;
-    pointer-events: none;
-  }
+  .film-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .film-bg-1 { background-color: #141414; }
+  .film-bg-2 { background-color: #181818; }
+  .film-bg-3 { background-color: #141414; }
+  .film-bg-4 { background-color: #181818; }
+  .film-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1; }
+  .film-icon { position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgba(201,168,76,0.15); border: 1.5px solid rgba(201,168,76,0.6); display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.3s; }
+  .film-card:hover .film-icon { background: rgba(201,168,76,0.3); transform: scale(1.1); }
+  .play-tri { width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 16px; border-color: transparent transparent transparent var(--gold2); margin-left: 4px; }
+  .film-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%); z-index: 2; }
+  .film-couple { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: var(--cream); letter-spacing: 0.04em; }
+  .film-location { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+  .film-placeholder-label { position: relative; z-index: 2; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(201,168,76,0.15); font-family: 'Jost', sans-serif; pointer-events: none; }
 
   /* Modal vidéo */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(30,20,15,0.92); z-index: 999; align-items: center; justify-content: center; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 999; align-items: center; justify-content: center; }
   .modal-overlay.active { display: flex; }
   .modal-inner { position: relative; width: 90%; max-width: 900px; }
-  .modal-close { position: absolute; top: -2.5rem; right: 0; background: none; border: none; color: var(--cream); font-size: 1.5rem; cursor: pointer; letter-spacing: 0.1em; font-family: 'Jost', sans-serif; opacity: 0.7; transition: opacity 0.2s; }
+  .modal-close { position: absolute; top: -2.5rem; right: 0; background: none; border: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; letter-spacing: 0.1em; font-family: 'Jost', sans-serif; opacity: 0.7; transition: opacity 0.2s; }
   .modal-close:hover { opacity: 1; }
   .modal-video { width: 100%; aspect-ratio: 16/9; background: #000; }
   .modal-video iframe { width: 100%; height: 100%; border: none; }
 
   /* FORMULES */
-  .formules { background: var(--earth); }
-  .formules .section-label { color: var(--sage); }
+  .formules { background: var(--dark); }
+  .formules .section-label { color: var(--gold); }
   .formules .section-title { color: var(--cream); }
-  .formules .section-sub { color: rgba(247,242,235,0.6); }
-  .formules-inclus { margin-top: 3rem; background: rgba(247,242,235,0.05); border: 1px solid rgba(247,242,235,0.1); padding: 1.6rem 2rem; margin-bottom: 0.5rem; }
-  .inclus-title { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); margin-bottom: 1.2rem; }
+  .formules .section-sub { color: var(--muted); }
+  .formules-inclus { margin-top: 3rem; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15); padding: 1.6rem 2rem; margin-bottom: 0.5rem; }
+  .inclus-title { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
   .inclus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem 2rem; }
-  .inclus-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.85rem; font-weight: 300; color: rgba(247,242,235,0.7); }
+  .inclus-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.85rem; font-weight: 300; color: var(--muted); }
   .inclus-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-  .formules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
-  .formule-card { background: rgba(247,242,235,0.05); border: 1px solid rgba(247,242,235,0.12); padding: 2.5rem; position: relative; transition: background 0.3s, border-color 0.3s; }
-  .formule-card:hover { background: rgba(247,242,235,0.09); border-color: rgba(196,154,90,0.5); }
-  .formule-card.featured { background: rgba(196,154,90,0.1); border-color: rgba(196,154,90,0.45); }
-  .formule-badge { position: absolute; top: -1px; right: 2rem; background: var(--gold); color: var(--earth); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.35rem 1rem; }
+  .formules-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+  .formule-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 2.5rem; position: relative; transition: background 0.3s, border-color 0.3s; }
+  .formule-card:hover { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.35); }
+  .formule-card.featured { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.4); }
+  .formule-badge { position: absolute; top: -1px; right: 2rem; background: var(--gold); color: var(--black); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.35rem 1rem; }
   .formule-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--cream); margin-bottom: 0.4rem; }
-  .formule-tagline { font-size: 0.82rem; color: var(--sage); font-style: italic; margin-bottom: 2rem; line-height: 1.5; }
+  .formule-tagline { font-size: 0.82rem; color: var(--muted); font-style: italic; margin-bottom: 2rem; line-height: 1.5; }
   .formule-price { display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 2rem; }
   .formule-price-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold); }
-  .formule-price-unit { font-size: 0.8rem; color: rgba(247,242,235,0.4); letter-spacing: 0.1em; }
-  .formule-divider { height: 1px; background: rgba(247,242,235,0.1); margin-bottom: 2rem; }
+  .formule-price-unit { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; }
+  .formule-divider { height: 1px; background: var(--border); margin-bottom: 2rem; }
   .formule-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-  .formule-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.88rem; font-weight: 300; color: rgba(247,242,235,0.78); line-height: 1.4; }
+  .formule-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.4; }
   .check-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 0.45rem; }
-  .formule-note { font-size: 0.78rem; color: rgba(247,242,235,0.4); font-style: italic; margin-top: 1.5rem; line-height: 1.5; }
-  .formule-cta { display: block; text-align: center; margin-top: 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 0.9rem 2rem; border: 1px solid rgba(247,242,235,0.3); color: var(--cream); transition: background 0.3s, border-color 0.3s; }
-  .formule-cta:hover { background: rgba(247,242,235,0.1); border-color: rgba(247,242,235,0.6); }
-  .formule-card.featured .formule-cta { background: var(--gold); border-color: var(--gold); color: var(--earth); }
-  .formule-card.featured .formule-cta:hover { background: var(--bark); border-color: var(--bark); color: var(--cream); }
-  .formules-custom { margin-top: 2rem; text-align: center; font-size: 0.88rem; color: rgba(247,242,235,0.5); font-style: italic; }
+  .formule-note { font-size: 0.78rem; color: rgba(136,128,112,0.6); font-style: italic; margin-top: 1.5rem; line-height: 1.5; }
+  .formule-cta { display: block; text-align: center; margin-top: 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 0.9rem 2rem; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); transition: background 0.3s, border-color 0.3s, color 0.3s; }
+  .formule-cta:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+  .formule-card.featured .formule-cta { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .formule-card.featured .formule-cta:hover { background: var(--gold2); border-color: var(--gold2); }
+  .formules-custom { margin-top: 2rem; text-align: center; font-size: 0.88rem; color: var(--muted); font-style: italic; }
   .formules-custom a { color: var(--gold); text-decoration: none; }
   .formules-custom a:hover { text-decoration: underline; }
 
   /* CONTACT */
-  .contact { background: var(--warm); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .contact { background: var(--black); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
   .form-group label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-  .form-group input, .form-group textarea, .form-group select { background: var(--cream); border: 1px solid var(--sand); padding: 0.9rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text); outline: none; transition: border-color 0.3s; width: 100%; }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--bark); }
+  .form-group input, .form-group textarea, .form-group select { background: var(--dark2); border: 1px solid var(--border); padding: 0.9rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--text); outline: none; transition: border-color 0.3s; width: 100%; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
   .form-group textarea { resize: vertical; min-height: 110px; }
   .form-group select { appearance: none; cursor: pointer; }
   .contact-details { display: flex; flex-direction: column; gap: 2rem; }
   .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
-  .contact-icon { width: 40px; height: 40px; border: 1px solid var(--sand); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--bark); font-size: 1rem; }
+  .contact-icon { width: 40px; height: 40px; border: 1px solid rgba(201,168,76,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold); font-size: 1rem; }
   .contact-item-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
-  .contact-item-val { font-size: 0.95rem; color: var(--earth); }
-  .contact-promise { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--bark); line-height: 1.5; margin-top: 1rem; }
+  .contact-item-val { font-size: 0.95rem; color: var(--cream); }
+  .contact-promise { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--gold2); line-height: 1.5; margin-top: 1rem; }
 
   /* FOOTER */
-  footer { background: var(--earth); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.1em; color: var(--cream); }
-  .footer-logo span { color: var(--gold); }
-  footer p { font-size: 0.75rem; color: rgba(247,242,235,0.4); letter-spacing: 0.05em; }
+  footer { background: var(--dark); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+  .footer-logo img { height: 40px; width: auto; }
+  footer p { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
   footer nav ul { display: flex; gap: 2rem; list-style: none; }
-  footer nav ul li a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,235,0.5); text-decoration: none; transition: color 0.3s; }
-  footer nav ul li a:hover { color: var(--cream); }
+  footer nav ul li a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  footer nav ul li a:hover { color: var(--gold); }
 
   /* FORM SUCCESS */
-  .form-success { display: none; text-align: center; padding: 3rem; background: rgba(122,140,110,0.1); border: 1px solid var(--sage); }
-  .form-success p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--earth); }
+  .form-success { display: none; text-align: center; padding: 3rem; background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); }
+  .form-success p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--gold2); }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
   /* COULISSES */
-  .coulisses { background: var(--cream); padding: 6rem 3rem; }
+  .coulisses { background: var(--dark2); padding: 6rem 3rem; }
   .coulisses-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .coulisses-text { position: sticky; top: 8rem; }
   .coulisses-text .section-sub { margin-bottom: 2rem; }
   .coulisses-signature { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--gold); margin-top: 1.5rem; }
-  .coulisses-tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--sand); padding: 0.35rem 0.9rem; margin-right: 0.5rem; margin-top: 0.5rem; }
+  .coulisses-tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.3); padding: 0.35rem 0.9rem; margin-right: 0.5rem; margin-top: 0.5rem; }
 
   .coulisses-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
   .cg-img { overflow: hidden; position: relative; }
@@ -194,15 +183,15 @@
   .coulisses-feature { margin-top: 3rem; position: relative; overflow: hidden; }
   .coulisses-feature img { width: 100%; aspect-ratio: 16/7; object-fit: cover; object-position: center 30%; display: block; transition: transform 0.6s ease; }
   .coulisses-feature:hover img { transform: scale(1.03); }
-  .coulisses-feature-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 2rem; background: linear-gradient(to top, rgba(58,46,36,0.75) 0%, transparent 100%); }
-  .coulisses-feature-caption p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(247,242,235,0.9); }
+  .coulisses-feature-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 2rem; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); }
+  .coulisses-feature-caption p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--gold2); }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo"><span>AF</span> Créations</div>
+  <div class="nav-logo"><img src="logo.png" alt="AF Créations"></div>
   <ul>
     <li><a href="#films">Films</a></li>
     <li><a href="#formules">Formules</a></li>
@@ -214,8 +203,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg-circle"></div>
-  <div class="hero-leaf"></div>
-  <div class="hero-leaf2"></div>
+  <div class="hero-line-deco"><div class="hero-diamond"></div></div>
+  
+  
   <p class="hero-eyebrow">Vidéaste de mariage · Saint-Maximin-la-Sainte-Baume · Var</p>
   <h1>Votre histoire,<br><em>éternellement</em> vivante</h1>
   <p>Je capture l'émotion brute de votre plus beau jour — regards, larmes, rires — dans un film artisanal que vous pourrez revivre toute votre vie.</p>
@@ -243,55 +233,55 @@
       POUR AJOUTER VOS VIDÉOS :
       1. Uploadez sur YouTube (non répertorié si vous voulez)
       2. Récupérez l'ID de la vidéo (ex: youtube.com/watch?v=XXXXXXXXXXX → ID = XXXXXXXXXXX)
-      3. Remplacez data-video-id="XXXXXXXXXXX" par votre vrai ID
+      3. Remplacez data-video-id="F2tSL0brK_k" par votre vrai ID
       4. Ajoutez votre photo de couverture :
          style="background-image: url('votre-miniature.jpg')"  sur la div .film-bg
     -->
-    <div class="film-card" data-video-id="XXXXXXXXXXX">
+    <div class="film-card" data-video-id="nR6E0NA8AfE">
       <div class="film-thumb">
-        <div class="film-bg film-bg-1"></div>
+        <div class="film-bg film-bg-1" style="background-image: url('miniature1.png'); background-size: cover; background-position: center;"></div>
         <div class="film-overlay"></div>
         <span class="film-placeholder-label">Ajouter une miniature</span>
         <div class="film-icon"><div class="play-tri"></div></div>
         <div class="film-info">
-          <p class="film-couple">Prénom & Prénom</p>
-          <p class="film-location">Lieu · Var</p>
+          <p class="film-couple">Élodie & Julien</p>
+          <p class="film-location">08 Mai 2026</p>
+        </div>
+      </div>
+    </div>
+    <div class="film-card" data-video-id="woSCpbn3iBY">
+      <div class="film-thumb">
+        <div class="film-bg film-bg-2" style="background-image: url('miniature2.png'); background-size: cover; background-position: center;"></div>
+        <div class="film-overlay"></div>
+        <span class="film-placeholder-label">Ajouter une miniature</span>
+        <div class="film-icon"><div class="play-tri"></div></div>
+        <div class="film-info">
+          <p class="film-couple">Aurélie & Kevin</p>
+          <p class="film-location">04 Juillet 2026</p>
+        </div>
+      </div>
+    </div>
+    <div class="film-card" data-video-id="-5XrDF6AJ4g">
+      <div class="film-thumb">
+        <div class="film-bg film-bg-3" style="background-image: url('miniature3.png'); background-size: cover; background-position: center;"></div>
+        <div class="film-overlay"></div>
+        <span class="film-placeholder-label">Ajouter une miniature</span>
+        <div class="film-icon"><div class="play-tri"></div></div>
+        <div class="film-info">
+          <p class="film-couple">Aurélie & Frédéric</p>
+          <p class="film-location">01 Août 2026</p>
         </div>
       </div>
     </div>
     <div class="film-card" data-video-id="XXXXXXXXXXX">
       <div class="film-thumb">
-        <div class="film-bg film-bg-2"></div>
+        <div class="film-bg film-bg-4" style="background-image: url('miniature4.png'); background-size: cover; background-position: center;"></div>
         <div class="film-overlay"></div>
         <span class="film-placeholder-label">Ajouter une miniature</span>
         <div class="film-icon"><div class="play-tri"></div></div>
         <div class="film-info">
-          <p class="film-couple">Prénom & Prénom</p>
-          <p class="film-location">Lieu · Provence</p>
-        </div>
-      </div>
-    </div>
-    <div class="film-card" data-video-id="XXXXXXXXXXX">
-      <div class="film-thumb">
-        <div class="film-bg film-bg-3"></div>
-        <div class="film-overlay"></div>
-        <span class="film-placeholder-label">Ajouter une miniature</span>
-        <div class="film-icon"><div class="play-tri"></div></div>
-        <div class="film-info">
-          <p class="film-couple">Prénom & Prénom</p>
-          <p class="film-location">Lieu · Provence</p>
-        </div>
-      </div>
-    </div>
-    <div class="film-card" data-video-id="XXXXXXXXXXX">
-      <div class="film-thumb">
-        <div class="film-bg film-bg-4"></div>
-        <div class="film-overlay"></div>
-        <span class="film-placeholder-label">Ajouter une miniature</span>
-        <div class="film-icon"><div class="play-tri"></div></div>
-        <div class="film-info">
-          <p class="film-couple">Prénom & Prénom</p>
-          <p class="film-location">Lieu · Côte d'Azur</p>
+          <p class="film-couple">Olivia & Jordan</p>
+          <p class="film-location"></p>
         </div>
       </div>
     </div>
@@ -315,12 +305,12 @@
       <p class="section-label">Dans les coulisses</p>
       <h2 class="section-title">L'œil derrière<br><em>la caméra</em></h2>
       <p class="section-sub">Chaque plan est le fruit d'une attention constante — anticipation, discrétion, réactivité. Du drone qui survole vos paysages provençaux à la caméra stabilisée au cœur de votre danse, je mets tout en œuvre pour que rien ne vous échappe.</p>
-      <p class="section-sub" style="margin-top:1rem;">Je travaille avec une Sony α7 III, un gimbal DJI et un drone Mavic pour offrir des images cinématographiques, quelle que soit la lumière — en plein soleil méditerranéen, sous les voûtes d'une cathédrale ou dans l'ambiance d'une soirée.</p>
+      <p class="section-sub" style="margin-top:1rem;">Je travaille avec une Sony α7 III, un stabilisateur Ronin DJI — qui permet d'obtenir des images parfaitement fluides même en mouvement — et un drone Mavic pour offrir des images cinématographiques, quelle que soit la lumière — en plein soleil méditerranéen, sous les voûtes d'une cathédrale ou dans l'ambiance d'une soirée.</p>
       <div style="margin-top:1.8rem;">
         <span class="coulisses-tag">Sony α7 III</span>
-        <span class="coulisses-tag">DJI Gimbal</span>
+        <span class="coulisses-tag">Ronin DJI</span>
         <span class="coulisses-tag">Drone Mavic</span>
-        <span class="coulisses-tag">Son directif</span>
+        <span class="coulisses-tag">Prise de son</span>
       </div>
       <p class="coulisses-signature">— Présent du matin au dernier slow</p>
     </div>
@@ -378,6 +368,7 @@
     <h2 class="section-title">Alexis Fernandez,<br><em>vidéaste passionné</em></h2>
     <blockquote class="about-quote">"Je ne filme pas un mariage, je préserve les émotions qui le rendent inoubliable."</blockquote>
     <p class="section-sub">Basé à Saint-Maximin-la-Sainte-Baume dans le Var, je me déplace dans toute la région PACA pour immortaliser votre journée. Mon approche est discrète et intuitive — je me fonds dans votre fête pour capter les instants authentiques, ceux qui font toute la beauté d'un mariage.</p>
+    <p class="section-sub" style="margin-top:1rem;">Pour les journées où deux mariages se déroulent simultanément, je fais appel à Arnaud, vidéaste de confiance avec qui je collabore depuis plusieurs années. Votre film reste entre mes mains : c'est moi qui assure toujours le montage et la post-production, pour vous garantir la même patte artistique, quel que soit le jour.</p>
     <p class="about-sig" style="margin-top:1.5rem;">— Alexis Fernandez</p>
   </div>
 </section>
@@ -402,10 +393,30 @@
 
   <div class="formules-grid">
     <div class="formule-card">
+      <p class="formule-name">L'Éveil</p>
+      <p class="formule-tagline">Des préparatifs jusqu'au vin d'honneur.<br>Les premiers instants de votre journée, pour toujours.</p>
+      <div class="formule-price">
+        <span class="formule-price-num">990 €</span>
+        <span class="formule-price-unit">tout inclus</span>
+      </div>
+      <div class="formule-divider"></div>
+      <ul class="formule-list">
+        <li><span class="check-dot"></span>Présence dès les préparatifs du matin</li>
+        <li><span class="check-dot"></span>Cérémonie & vin d'honneur</li>
+        <li><span class="check-dot"></span>Teaser d'environ 5 min</li>
+        <li><span class="check-dot"></span>Version longue 20–30 min</li>
+        <li><span class="check-dot"></span>Prises de vue drone (si autorisé)</li>
+        <li><span class="check-dot"></span>Livraison sur clé USB</li>
+      </ul>
+      <p class="formule-note">* Frais de déplacement en sus si le lieu dépasse 50 km autour de Saint-Maximin-la-Sainte-Baume.</p>
+      <a href="#contact" class="formule-cta">Réserver cette formule</a>
+    </div>
+
+    <div class="formule-card">
       <p class="formule-name">L'Essentiel</p>
       <p class="formule-tagline">De la mairie jusqu'à la pièce montée.<br>Capturez les moments clés de cette journée magique.</p>
       <div class="formule-price">
-        <span class="formule-price-num">990 €</span>
+        <span class="formule-price-num">1 190 €</span>
         <span class="formule-price-unit">tout inclus</span>
       </div>
       <div class="formule-divider"></div>
@@ -418,7 +429,7 @@
         <li><span class="check-dot"></span>Livraison sur clé USB</li>
       </ul>
       <p class="formule-note">* Frais de déplacement en sus si le lieu dépasse 50 km autour de Saint-Maximin-la-Sainte-Baume.</p>
-      <a href="#contact" class="formule-cta">Demander un devis</a>
+      <a href="#contact" class="formule-cta">Réserver cette formule</a>
     </div>
 
     <div class="formule-card featured">
@@ -426,7 +437,7 @@
       <p class="formule-name">Journée Éternelle</p>
       <p class="formule-tagline">Des préparatifs jusqu'à la pièce montée.<br>Immortalisez l'intégralité de cette journée unique.</p>
       <div class="formule-price">
-        <span class="formule-price-num">1 190 €</span>
+        <span class="formule-price-num">1 390 €</span>
         <span class="formule-price-unit">tout inclus</span>
       </div>
       <div class="formule-divider"></div>
@@ -501,8 +512,9 @@
           <label>Formule souhaitée</label>
           <select name="formule">
             <option value="">Choisir…</option>
-            <option>L'Essentiel – 990 €</option>
-            <option>Journée Éternelle – 1 190 €</option>
+            <option>L'Éveil – 990 €</option>
+            <option>L'Essentiel – 1 190 €</option>
+            <option>Journée Éternelle – 1 390 €</option>
             <option>Je ne sais pas encore</option>
           </select>
         </div>
@@ -521,7 +533,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><span>AF</span> Créations</div>
+  <div class="footer-logo"><img src="logo.png" alt="AF Créations"></div>
   <p>© 2025 AF Créations · Alexis Fernandez · Siret 88797786600029</p>
   <nav>
     <ul>
