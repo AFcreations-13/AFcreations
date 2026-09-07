@@ -48,10 +48,12 @@
   .section-title em { font-style: italic; color: var(--gold); }
   .section-sub { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 520px; }
 
+  /* Séparateur doré décoratif */
   .gold-divider { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
   .gold-divider::before, .gold-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.3; }
   .gold-divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
 
+  /* ABOUT */
   .about { background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
   .about-visual { position: relative; height: 420px; }
   .about-frame { position: absolute; width: 80%; height: 100%; background: var(--dark3); border: 1px solid var(--border); border-radius: 200px 200px 0 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
@@ -61,6 +63,7 @@
   .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--gold2); line-height: 1.7; margin: 2rem 0; padding-left: 1.5rem; border-left: 2px solid var(--gold); }
   .about-sig { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--muted); }
 
+  /* FILMS — CARROUSEL */
   .films { background: var(--black); }
   .films-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
 
@@ -79,6 +82,7 @@
   .film-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%); z-index: 2; }
   .film-couple { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; font-style: italic; color: var(--cream); letter-spacing: 0.04em; }
   .film-location { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+  .film-placeholder-label { position: relative; z-index: 2; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(201,168,76,0.15); font-family: 'Jost', sans-serif; pointer-events: none; }
 
   .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px; border-radius: 50%; background: rgba(10,10,10,0.75); border: 1px solid rgba(201,168,76,0.35); color: var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.25s, border-color 0.25s; backdrop-filter: blur(4px); }
   .carousel-arrow:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
@@ -100,6 +104,7 @@
     .film-card { flex: 0 0 88%; }
   }
 
+  /* Modal vidéo */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 999; align-items: center; justify-content: center; }
   .modal-overlay.active { display: flex; }
   .modal-inner { position: relative; width: 90%; max-width: 900px; }
@@ -108,11 +113,17 @@
   .modal-video { width: 100%; aspect-ratio: 16/9; background: #000; }
   .modal-video iframe { width: 100%; height: 100%; border: none; }
 
+  /* FORMULES */
   .formules { background: var(--dark); }
   .formules .section-label { color: var(--gold); }
   .formules .section-title { color: var(--cream); }
   .formules .section-sub { color: var(--muted); }
-  .formules-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .formules-inclus { margin-top: 3rem; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15); padding: 1.6rem 2rem; margin-bottom: 0.5rem; }
+  .inclus-title { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  .inclus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem 2rem; }
+  .inclus-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.85rem; font-weight: 300; color: var(--muted); }
+  .inclus-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .formules-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
   .formule-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 2.5rem; position: relative; transition: background 0.3s, border-color 0.3s; }
   .formule-card:hover { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.35); }
   .formule-card.featured { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.4); }
@@ -135,6 +146,7 @@
   .formules-custom a { color: var(--gold); text-decoration: none; }
   .formules-custom a:hover { text-decoration: underline; }
 
+  /* CONTACT */
   .contact { background: var(--black); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
@@ -150,6 +162,7 @@
   .contact-item-val { font-size: 0.95rem; color: var(--cream); }
   .contact-promise { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--gold2); line-height: 1.5; margin-top: 1rem; }
 
+  /* FOOTER */
   footer { background: var(--dark); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
   .footer-logo img { height: 40px; width: auto; }
   footer p { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
@@ -157,11 +170,13 @@
   footer nav ul li a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
   footer nav ul li a:hover { color: var(--gold); }
 
+  /* FORM SUCCESS */
   .form-success { display: none; text-align: center; padding: 3rem; background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); }
   .form-success p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--gold2); }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* COULISSES */
   .coulisses { background: var(--dark2); padding: 6rem 3rem; }
   .coulisses-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .coulisses-text { position: sticky; top: 8rem; }
@@ -185,20 +200,51 @@
   @media (max-width: 480px) {
     .coulisses-gallery { columns: 1; }
   }
+
+  /* AVIS */
+  .avis { background: var(--dark2); }
+  .avis-carousel { position: relative; }
+  .avis-viewport { overflow: hidden; }
+  .avis-track { display: flex; gap: 1.5rem; transition: transform 0.55s cubic-bezier(0.65,0,0.35,1); will-change: transform; align-items: stretch; }
+  .avis-card { flex: 0 0 calc((100% - 1.5rem) / 2); background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 2.2rem; display: flex; flex-direction: column; }
+  .avis-quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: var(--gold); line-height: 1; opacity: 0.5; margin-bottom: 0.5rem; }
+  .avis-text { font-size: 0.92rem; font-weight: 300; color: var(--text); line-height: 1.75; flex-grow: 1; }
+  .avis-footer { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+  .avis-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; color: var(--gold2); }
+  .avis-date { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+  .avis-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px; border-radius: 50%; background: rgba(10,10,10,0.75); border: 1px solid rgba(201,168,76,0.35); color: var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.25s, border-color 0.25s; backdrop-filter: blur(4px); }
+  .avis-arrow:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
+  .avis-arrow.prev { left: -22px; }
+  .avis-arrow.next { right: -22px; }
+  .avis-arrow svg { width: 18px; height: 18px; }
+  .avis-arrow[disabled] { opacity: 0.25; cursor: default; pointer-events: none; }
+  .avis-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 2rem; }
+  .avis-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; padding: 0; transition: background 0.25s, transform 0.25s; }
+  .avis-dot.active { background: var(--gold); transform: scale(1.3); }
+  @media (max-width: 900px) {
+    .avis-arrow.prev { left: 0.4rem; }
+    .avis-arrow.next { right: 0.4rem; }
+  }
+  @media (max-width: 700px) {
+    .avis-card { flex: 0 0 88%; }
+  }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo"><img src="logo.png" alt="AF Créations"></div>
   <ul>
     <li><a href="#films">Films</a></li>
+    <li><a href="#avis">Avis</a></li>
     <li><a href="#formules">Formules</a></li>
     <li><a href="#about">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg-circle"></div>
   <div class="hero-line-deco"><div class="hero-diamond"></div></div>
@@ -209,9 +255,13 @@
     <a href="#films" class="btn-primary">Voir mes films</a>
     <a href="#formules" class="btn-outline">Nos formules</a>
   </div>
-  <div class="hero-scroll"><span>Découvrir</span><div class="scroll-line"></div></div>
+  <div class="hero-scroll">
+    <span>Découvrir</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
+<!-- FILMS -->
 <section class="films" id="films">
   <div class="films-header">
     <div>
@@ -223,6 +273,15 @@
   <div class="carousel" id="filmsCarousel">
     <div class="carousel-viewport">
       <div class="carousel-track" id="carouselTrack">
+        <!--
+          POUR AJOUTER / RETIRER UNE VIDÉO :
+          1. Uploadez sur YouTube (non répertorié si vous voulez)
+          2. Récupérez l'ID de la vidéo (ex: youtube.com/watch?v=XXXXXXXXXXX → ID = XXXXXXXXXXX)
+          3. Dupliquez un bloc .film-card ci-dessous et changez data-video-id
+          4. Ajoutez votre photo de couverture :
+             style="background-image: url('votre-miniature.jpg')" sur la div .film-bg
+          Le carrousel s'adapte automatiquement, quel que soit le nombre de vidéos.
+        -->
         <div class="film-card" data-video-id="woSCpbn3iBY">
           <div class="film-thumb">
             <div class="film-bg" style="background-image: url('miniature3.png');"></div>
@@ -314,20 +373,24 @@
   </div>
 </section>
 
+<!-- Modal vidéo -->
 <div class="modal-overlay" id="videoModal">
   <div class="modal-inner">
     <button class="modal-close" id="modalClose">✕ Fermer</button>
-    <div class="modal-video"><iframe id="modalIframe" src="" allowfullscreen allow="autoplay"></iframe></div>
+    <div class="modal-video">
+      <iframe id="modalIframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
   </div>
 </div>
 
+<!-- COULISSES -->
 <section class="coulisses" id="coulisses">
   <div class="coulisses-inner">
     <div class="coulisses-text">
       <p class="section-label">Dans les coulisses</p>
       <h2 class="section-title">L'œil derrière<br><em>la caméra</em></h2>
       <p class="section-sub">Chaque plan est le fruit d'une attention constante — anticipation, discrétion, réactivité. Du drone qui survole vos paysages provençaux à la caméra stabilisée au cœur de votre danse, je mets tout en œuvre pour que rien ne vous échappe.</p>
-      <p class="section-sub" style="margin-top:1rem;">Je travaille avec une Sony α7 III, un stabilisateur Ronin DJI — qui permet d'obtenir des images parfaitement fluides même en mouvement — et un drone Mavic pour offrir des images cinématographiques, quelle que soit la lumière.</p>
+      <p class="section-sub" style="margin-top:1rem;">Je travaille avec une Sony α7 III, un stabilisateur Ronin DJI — qui permet d'obtenir des images parfaitement fluides même en mouvement — et un drone Mavic pour offrir des images cinématographiques, quelle que soit la lumière — en plein soleil méditerranéen, sous les voûtes d'une cathédrale ou dans l'ambiance d'une soirée.</p>
       <div style="margin-top:1.8rem;">
         <span class="coulisses-tag">Sony α7 III</span>
         <span class="coulisses-tag">Ronin DJI</span>
@@ -336,6 +399,7 @@
       </div>
       <p class="coulisses-signature">— Présent du matin au dernier slow</p>
     </div>
+
     <div>
       <div class="coulisses-gallery">
         <div class="cg-img">
@@ -380,9 +444,15 @@
   </div>
 </section>
 
+<!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-visual">
     <div class="about-frame">
+      <!--
+        POUR AJOUTER VOTRE PHOTO :
+        Décommentez la ligne ci-dessous et remplacez "votre-photo.jpg" par le nom de votre fichier
+        <img src="votre-photo.jpg" alt="Alexis Fernandez" class="about-photo">
+      -->
       <div class="about-frame-inner">AF</div>
     </div>
     <div class="about-accent"></div>
@@ -397,15 +467,128 @@
   </div>
 </section>
 
+<!-- AVIS -->
+<section class="avis" id="avis">
+  <p class="section-label">Ils nous ont fait confiance</p>
+  <h2 class="section-title">Leurs <em>avis</em></h2>
+  <p class="section-sub">Chaque mot compte, et chaque mariage raconté avec confiance est une fierté.</p>
+
+  <div class="avis-carousel" id="avisCarousel">
+    <div class="avis-viewport">
+      <div class="avis-track" id="avisTrack">
+        <!--
+          POUR AJOUTER UN AVIS :
+          Dupliquez un bloc .avis-card ci-dessous et remplacez le texte, le nom et la date.
+          Le carrousel s'adapte automatiquement, quel que soit le nombre d'avis.
+        -->
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Vidéaste pour notre mariage, très discret, travail génial et pro. Merci Alexis pour ta gentillesse ! Je recommande.</p>
+          <div class="avis-footer">
+            <p class="avis-name">Laurence</p>
+            <p class="avis-date">17 octobre 2025</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Un grand merci Alexis pour le superbe film de notre mariage. Malgré la météo, tu as su capter des images magnifiques et toute l'émotion de cette journée. On est ravis de t'avoir fait confiance ! Merci pour ta gentillesse et ton œil artistique !</p>
+          <div class="avis-footer">
+            <p class="avis-name">Christophe & Caroline</p>
+            <p class="avis-date">3 octobre 2025</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Merci infiniment Alexis d'avoir été là pour immortaliser le plus beau jour de notre vie ! Grâce à toi on a pu revivre cette journée magique ! La vidéo a fait l'unanimité dans la famille et l'émotion était au rendez-vous ! Encore merci pour ton magnifique travail !!!</p>
+          <div class="avis-footer">
+            <p class="avis-name">Sandy</p>
+            <p class="avis-date">9 septembre 2024</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Il y a des souvenirs qui n'ont pas de prix et grâce à Alexis ceux du mariage de notre fille resteront gravés à jamais. Dès les premières images nous avons revécu chaque émotion. Votre talent, votre discrétion et votre sensibilité transparaissent dans chaque seconde de la vidéo. Nous vous recommanderons sans la moindre hésitation.</p>
+          <div class="avis-footer">
+            <p class="avis-name">Paula</p>
+            <p class="avis-date">31 juillet 2022</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Un immense merci à Alexis pour son professionnalisme, une vidéo pleine d'émotions et de souvenirs pour la vie. Nous sommes très heureux d'avoir fait appel à toi !</p>
+          <div class="avis-footer">
+            <p class="avis-name">Aurélie & Kevin</p>
+            <p class="avis-date">31 juillet 2022</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Alexis a été notre vidéaste. Plus que professionnel, on a pu souligner sa gentillesse et sa discrétion. Nous aurons des souvenirs à vie, on pourra revivre nos émotions à chaque visionnage. Merci pour tout.</p>
+          <div class="avis-footer">
+            <p class="avis-name">Johanne</p>
+            <p class="avis-date">28 juillet 2022</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Personne sérieuse et agréable, très professionnel. Je recommande les yeux fermés.</p>
+          <div class="avis-footer">
+            <p class="avis-name">Tibo</p>
+            <p class="avis-date">7 juillet 2022</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Services de qualité, très réactif et rapide pour un montage vidéo, le résultat a été encore mieux que ce que j'espérais. Je vous le recommande sans hésitation.</p>
+          <div class="avis-footer">
+            <p class="avis-name">Kevin</p>
+            <p class="avis-date">7 juillet 2022</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">J'ai fait appel à Alexis pour un shooting photo, séance sympa et résultat plus que satisfaisant, il a le bon œil, je recommande.</p>
+          <div class="avis-footer">
+            <p class="avis-name">Nico</p>
+            <p class="avis-date">7 juillet 2022</p>
+          </div>
+        </div>
+        <div class="avis-card">
+          <p class="avis-quote-mark">❝</p>
+          <p class="avis-text">Serviable, impliqué, professionnel. Matériel de haute qualité (drone y compris). Shooting divers, réalisation de clip, publicité, bien immobilier... Rien à dire !</p>
+          <div class="avis-footer">
+            <p class="avis-name">Ange</p>
+            <p class="avis-date">28 juin 2022</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="avis-arrow prev" id="avisPrev" aria-label="Avis précédent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="avis-arrow next" id="avisNext" aria-label="Avis suivant">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+
+    <div class="avis-dots" id="avisDots"></div>
+  </div>
+</section>
+
+<!-- FORMULES -->
 <section class="formules" id="formules">
   <p class="section-label">Tarifs & Prestations</p>
   <h2 class="section-title">Choisissez <em>votre formule</em></h2>
   <p class="section-sub">Trois formules pensées pour immortaliser intégralement votre journée, avec la même exigence artistique.</p>
+
   <div class="formules-grid">
     <div class="formule-card">
       <p class="formule-name">L'Éveil</p>
       <p class="formule-tagline">Des préparatifs jusqu'au vin d'honneur.<br>Les premiers instants de votre journée, pour toujours.</p>
-      <div class="formule-price"><span class="formule-price-num">990 €</span><span class="formule-price-unit">tout inclus</span></div>
+      <div class="formule-price">
+        <span class="formule-price-num">990 €</span>
+        <span class="formule-price-unit">tout inclus</span>
+      </div>
       <div class="formule-divider"></div>
       <ul class="formule-list">
         <li><span class="check-dot"></span>Présence dès les préparatifs du matin</li>
@@ -418,10 +601,14 @@
       <p class="formule-note">* Frais de déplacement en sus si le lieu dépasse 50 km autour de Saint-Maximin-la-Sainte-Baume.</p>
       <a href="#contact" class="formule-cta">Réserver cette formule</a>
     </div>
+
     <div class="formule-card">
       <p class="formule-name">L'Essentiel</p>
       <p class="formule-tagline">De la mairie jusqu'à la pièce montée.<br>Capturez les moments clés de cette journée magique.</p>
-      <div class="formule-price"><span class="formule-price-num">1 190 €</span><span class="formule-price-unit">tout inclus</span></div>
+      <div class="formule-price">
+        <span class="formule-price-num">1 190 €</span>
+        <span class="formule-price-unit">tout inclus</span>
+      </div>
       <div class="formule-divider"></div>
       <ul class="formule-list">
         <li><span class="check-dot"></span>Présence de la mairie à la pièce montée</li>
@@ -434,11 +621,15 @@
       <p class="formule-note">* Frais de déplacement en sus si le lieu dépasse 50 km autour de Saint-Maximin-la-Sainte-Baume.</p>
       <a href="#contact" class="formule-cta">Réserver cette formule</a>
     </div>
+
     <div class="formule-card featured">
       <div class="formule-badge">La plus complète</div>
       <p class="formule-name">Journée Éternelle</p>
       <p class="formule-tagline">Des préparatifs jusqu'à la pièce montée.<br>Immortalisez l'intégralité de cette journée unique.</p>
-      <div class="formule-price"><span class="formule-price-num">1 390 €</span><span class="formule-price-unit">tout inclus</span></div>
+      <div class="formule-price">
+        <span class="formule-price-num">1 390 €</span>
+        <span class="formule-price-unit">tout inclus</span>
+      </div>
       <div class="formule-divider"></div>
       <ul class="formule-list">
         <li><span class="check-dot"></span>Présence dès les préparatifs du matin jusqu'à la pièce montée</li>
@@ -452,9 +643,11 @@
       <a href="#contact" class="formule-cta">Réserver cette formule</a>
     </div>
   </div>
+
   <p class="formules-custom">Un projet particulier ? <a href="#contact">N'hésitez pas à m'en parler !</a></p>
 </section>
 
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <div>
     <p class="section-label">Parlons de votre mariage</p>
@@ -463,27 +656,48 @@
     <div class="contact-details" style="margin-top:2.5rem;">
       <div class="contact-item">
         <div class="contact-icon">✉</div>
-        <div><p class="contact-item-label">Email</p><p class="contact-item-val">AFcreation.contact@gmail.com</p></div>
+        <div>
+          <p class="contact-item-label">Email</p>
+          <p class="contact-item-val">AFcreation.contact@gmail.com</p>
+        </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">◎</div>
-        <div><p class="contact-item-label">Zone d'intervention</p><p class="contact-item-val">PACA & alentours · Déplacement possible partout en France</p></div>
+        <div>
+          <p class="contact-item-label">Zone d'intervention</p>
+          <p class="contact-item-val">PACA & alentours · Déplacement possible partout en France</p>
+        </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">⊙</div>
-        <div><p class="contact-item-label">Siret</p><p class="contact-item-val">88797786600029</p></div>
+        <div>
+          <p class="contact-item-label">Siret</p>
+          <p class="contact-item-val">88797786600029</p>
+        </div>
       </div>
     </div>
   </div>
   <div>
     <form id="contactForm" action="https://formspree.io/f/VOTRE_ID" method="POST">
       <div class="form-row">
-        <div class="form-group"><label>Votre prénom</label><input type="text" name="prenom" placeholder="Marie" required></div>
-        <div class="form-group"><label>Prénom du / de la partenaire</label><input type="text" name="prenom_partenaire" placeholder="Julien"></div>
+        <div class="form-group">
+          <label>Votre prénom</label>
+          <input type="text" name="prenom" placeholder="Marie" required>
+        </div>
+        <div class="form-group">
+          <label>Prénom du / de la partenaire</label>
+          <input type="text" name="prenom_partenaire" placeholder="Julien">
+        </div>
       </div>
-      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="marie@exemple.fr" required></div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="marie@exemple.fr" required>
+      </div>
       <div class="form-row">
-        <div class="form-group"><label>Date du mariage</label><input type="date" name="date_mariage"></div>
+        <div class="form-group">
+          <label>Date du mariage</label>
+          <input type="date" name="date_mariage">
+        </div>
         <div class="form-group">
           <label>Formule souhaitée</label>
           <select name="formule">
@@ -495,39 +709,49 @@
           </select>
         </div>
       </div>
-      <div class="form-group"><label>Votre message</label><textarea name="message" placeholder="Parlez-moi de votre mariage, du lieu, de l'ambiance que vous imaginez…"></textarea></div>
+      <div class="form-group">
+        <label>Votre message</label>
+        <textarea name="message" placeholder="Parlez-moi de votre mariage, du lieu, de l'ambiance que vous imaginez…"></textarea>
+      </div>
       <button type="submit" class="btn-primary">Envoyer le message</button>
     </form>
-    <div class="form-success" id="formSuccess"><p>Merci ! Je vous réponds dans les 48h. ✦</p></div>
+    <div class="form-success" id="formSuccess">
+      <p>Merci ! Je vous réponds dans les 48h. ✦</p>
+    </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo"><img src="logo.png" alt="AF Créations"></div>
   <p>© 2025 AF Créations · Alexis Fernandez · Siret 88797786600029</p>
-  <nav><ul>
-    <li><a href="#films">Films</a></li>
-    <li><a href="#formules">Formules</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul></nav>
+  <nav>
+    <ul>
+      <li><a href="#films">Films</a></li>
+      <li><a href="#formules">Formules</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 </footer>
 
 <script>
-  (function() {
-    const track = document.getElementById('carouselTrack');
+  // ── Carrousel générique (vidéos + avis) ──
+  function initCarousel(trackId, prevId, nextId, dotsId, dotClass, maxPerView) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
     const cards = Array.from(track.children);
-    const prevBtn = document.getElementById('carouselPrev');
-    const nextBtn = document.getElementById('carouselNext');
-    const dotsWrap = document.getElementById('carouselDots');
+    const prevBtn = document.getElementById(prevId);
+    const nextBtn = document.getElementById(nextId);
+    const dotsWrap = document.getElementById(dotsId);
     if (!cards.length) return;
 
     function cardsPerView() {
       if (window.innerWidth <= 600) return 1;
-      if (window.innerWidth <= 900) return 2;
-      return 3;
+      if (window.innerWidth <= 900) return Math.min(2, maxPerView);
+      return maxPerView;
     }
 
-    let index = 0;
+    let index = 0; // index de la première carte visible
     let perView = cardsPerView();
     let maxIndex = Math.max(0, cards.length - perView);
 
@@ -536,7 +760,7 @@
       const pages = maxIndex + 1;
       for (let i = 0; i < pages; i++) {
         const dot = document.createElement('button');
-        dot.className = 'carousel-dot';
+        dot.className = dotClass;
         dot.setAttribute('aria-label', 'Aller au groupe ' + (i + 1));
         dot.addEventListener('click', () => goTo(i));
         dotsWrap.appendChild(dot);
@@ -556,7 +780,7 @@
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === maxIndex;
 
-      const dots = dotsWrap.querySelectorAll('.carousel-dot');
+      const dots = dotsWrap.querySelectorAll('.' + dotClass);
       dots.forEach((d, i) => d.classList.toggle('active', i === index));
     }
 
@@ -568,6 +792,7 @@
     prevBtn.addEventListener('click', () => goTo(index - 1));
     nextBtn.addEventListener('click', () => goTo(index + 1));
 
+    // Swipe tactile
     let startX = 0, isDown = false;
     track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; isDown = true; }, { passive: true });
     track.addEventListener('touchend', (e) => {
@@ -585,8 +810,12 @@
 
     buildDots();
     update();
-  })();
+  }
 
+  initCarousel('carouselTrack', 'carouselPrev', 'carouselNext', 'carouselDots', 'carousel-dot', 3);
+  initCarousel('avisTrack', 'avisPrev', 'avisNext', 'avisDots', 'avis-dot', 2);
+
+  // Ouverture modal vidéo
   document.querySelectorAll('.film-card').forEach(card => {
     card.addEventListener('click', () => {
       const videoId = card.dataset.videoId;
@@ -597,6 +826,7 @@
     });
   });
 
+  // Fermeture modal
   document.getElementById('modalClose').addEventListener('click', () => {
     document.getElementById('videoModal').classList.remove('active');
     document.getElementById('modalIframe').src = '';
@@ -608,6 +838,7 @@
     }
   });
 
+  // Formulaire Formspree
   const form = document.getElementById('contactForm');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
