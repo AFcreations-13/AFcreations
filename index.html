@@ -23,9 +23,15 @@
   nav ul li a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
   nav ul li a:hover { color: var(--gold); }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 10rem 3rem 5rem; position: relative; overflow: hidden; background: var(--black); }
-  .hero-bg-circle { position: absolute; right: -10rem; top: 50%; transform: translateY(-50%); width: 50rem; height: 50rem; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, rgba(201,168,76,0.03) 40%, transparent 70%); }
-  .hero-line-deco { position: absolute; right: 8rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 0; opacity: 0.15; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 10rem 3rem 5rem; position: relative; overflow: hidden; background: var(--black) url('hero-hollywood.jpg') center center / cover no-repeat; }
+  /* Voile sombre : lisibilité du texte à gauche + fondu vers le noir en haut et en bas */
+  .hero::before { content: ''; position: absolute; inset: 0; z-index: 0; background:
+      linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0) 22%, rgba(10,10,10,0) 68%, rgba(10,10,10,0.95) 100%),
+      linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 42%, rgba(10,10,10,0.35) 75%, rgba(10,10,10,0.2) 100%); }
+  .hero > * { position: relative; z-index: 1; }
+  /* Décors dorés du hero : masqués depuis l'ajout de la photo de fond (remettre en display:block pour les réafficher) */
+  .hero-bg-circle { display: none; position: absolute; right: -10rem; top: 50%; transform: translateY(-50%); width: 50rem; height: 50rem; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, rgba(201,168,76,0.03) 40%, transparent 70%); }
+  .hero-line-deco { display: none; position: absolute; right: 8rem; top: 50%; transform: translateY(-50%); flex-direction: column; align-items: center; gap: 0; opacity: 0.15; }
   .hero-line-deco::before, .hero-line-deco::after { content: ''; display: block; width: 1px; height: 180px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); }
   .hero-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); margin: 0.6rem 0; }
   .hero-eyebrow { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.2s both; }
@@ -56,13 +62,25 @@
 
   /* ABOUT */
   .about { background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .about-visual { position: relative; height: 420px; }
-  .about-frame { position: absolute; width: 80%; height: 100%; background: var(--dark3); border: 1px solid var(--border); border-radius: 200px 200px 0 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .about-photo { width: 100%; height: 100%; object-fit: cover; }
+  .about-visual { position: relative; height: 620px; }
+  .about-frame { position: absolute; width: 94%; height: 100%; background: var(--dark3); border: 1px solid var(--border); border-radius: 240px 240px 0 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .about-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
   .about-frame-inner { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--gold); opacity: 0.15; font-style: italic; }
-  .about-accent { position: absolute; bottom: 1rem; right: 0; width: 45%; height: 55%; background: var(--gold); opacity: 0.04; border-radius: 120px 0 120px 0; }
+  .about-accent { display: none; position: absolute; bottom: 1rem; right: 0; width: 45%; height: 55%; background: var(--gold); opacity: 0.04; border-radius: 120px 0 120px 0; }
   .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--gold2); line-height: 1.7; margin: 2rem 0; padding-left: 1.5rem; border-left: 2px solid var(--gold); }
   .about-sig { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--muted); }
+
+  /* À propos & Contact : empilement sur petit écran */
+  @media (max-width: 900px) {
+    .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { height: 520px; }
+    .about-frame { width: 100%; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 1.5rem; }
+    .about-visual { height: 420px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
 
   /* FILMS — CARROUSEL */
   .films { background: var(--black); }
@@ -451,12 +469,8 @@
 <section class="about" id="about">
   <div class="about-visual">
     <div class="about-frame">
-      <!--
-        POUR AJOUTER VOTRE PHOTO :
-        Décommentez la ligne ci-dessous et remplacez "votre-photo.jpg" par le nom de votre fichier
-        <img src="votre-photo.jpg" alt="Alexis Fernandez" class="about-photo">
-      -->
-      <div class="about-frame-inner">AF</div>
+      <!-- Pour changer la photo : remplacez simplement le fichier alexis.jpg (même nom) -->
+      <img src="alexis.jpg" alt="Alexis Fernandez, vidéaste" class="about-photo">
     </div>
     <div class="about-accent"></div>
   </div>
